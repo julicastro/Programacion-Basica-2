@@ -7,7 +7,7 @@ import Excepciones.ClienteNoEncontradoException;
 public class Bar {
 
 	private String nombre;
-	private List <Cliente> clientes = new ArrayList<>(); 
+	private LinkedList <Cliente> clientes = new LinkedList<>(); 
 	private Boolean estaAbierto = false;
 
 	
@@ -34,7 +34,7 @@ public class Bar {
 			this.clientes.add(cliente);
 			seAgrego = true;
 		}else {
-			seAgrego = false; // ACA VA LA EXCEPCION
+			seAgrego = false;
 		}
 		return seAgrego;
 	}
@@ -58,20 +58,32 @@ public class Bar {
 			for (int i = 0; i < this.clientes.size(); i++) {
 				if(this.clientes.get(i).equals(cliente)) {
 					this.clientes.remove(i);
+					seElimino = true;
 					break;
 				}
 			}
-			seElimino = true;
 		}
 		return seElimino;
 	}
 	
+	public void ordenarClientesAlfabeticamente() {
+		for (Cliente c : clientes) {
+			System.out.println("Nombre = " + c.getNombre() + ", Edad = " + c.getEdad());
+		}
+	}
 	
+	public void ordenarAlfabeticamente() {
+		for (Cliente c : clientes) {
+			System.out.println(c.getNombre());
+		}
+	}
 	
-	
-	
-	
-	
+	/*
+	public LinkedList <Cliente> ordenarClientesPorEdad() {
+		return Collections.sort((List<T>) this.clientes); 
+
+	}
+	*/	
 	
 	// Getters y Setters
 	
@@ -83,14 +95,6 @@ public class Bar {
 		this.nombre = nombre;
 	}
 
-	public List<Cliente> getClientes() {
-		return clientes;
-	}
-
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
-	}
-
 	public Boolean getEstaAbierto() {
 		return estaAbierto;
 	}
@@ -99,5 +103,14 @@ public class Bar {
 		this.estaAbierto = estaAbierto;
 	}
 
+	public void setClientes(LinkedList<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+
+	public LinkedList<Cliente> getClientes() {
+		return clientes;
+	}
+
+	
 
 }

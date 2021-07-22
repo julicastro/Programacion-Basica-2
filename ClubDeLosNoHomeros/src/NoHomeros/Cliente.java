@@ -1,6 +1,8 @@
 package NoHomeros;
 
-public class Cliente {
+import java.util.Comparator;
+
+public class Cliente implements Comparable<Cliente>{
 
 	private String nombre;
 	private Integer edad;
@@ -52,9 +54,18 @@ public class Cliente {
 		return true;
 	}
 
-	
-	
+	@Override
+	public int compareTo(Cliente o) {
+		return this.getNombre().compareToIgnoreCase(o.getNombre());
+	}
+
+
+
+
 	
 	
 	
 }
+
+
+

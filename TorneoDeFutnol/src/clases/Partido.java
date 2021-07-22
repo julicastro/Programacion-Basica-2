@@ -71,14 +71,11 @@ public class Partido {
 				golesEquipoVisitante++;
 		}
 			
-					
 		if (golesEquipoLocal>golesEquipoVisitante)
 					ganador= "Local";
 		else 
 			ganador ="visitante";
-		
-		return ganador;
-					
+		return ganador;		
 		
 	}
 

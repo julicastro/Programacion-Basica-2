@@ -6,10 +6,6 @@ public abstract class Miembro {
 	private String equipo;
 	private String apellido;
 	
-	
-	
-	
-	
 	public Miembro(String nombre, String equipo, String apellido, Integer dni) {
 		
 		this.nombre = nombre;
