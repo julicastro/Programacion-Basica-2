@@ -13,5 +13,13 @@ public class Agrandar extends Hechizo {
 		hechizable.setAgramdado();
 		
 	}
+
+	public String getConjuro() {
+		return conjuro;
+	}
+
+	public void setConjuro(String conjuro) {
+		this.conjuro = conjuro;
+	}
 	
 }
