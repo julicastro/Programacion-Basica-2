@@ -1,17 +1,10 @@
-package marvel;
+package ar.edu.unlam.pb2;
 
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
 import org.junit.Test;
-
-import marvel.Batalla;
-import marvel.CantidadDeVillanosYHeroesIncorrectos;
-import marvel.Gemas;
-import marvel.Heroes;
-import marvel.Juego;
-import marvel.Villanos;
 
 public class MarvelTest {
 

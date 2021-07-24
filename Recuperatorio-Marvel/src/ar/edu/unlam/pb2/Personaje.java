@@ -1,4 +1,4 @@
-package marvel;
+package ar.edu.unlam.pb2;
 
 public abstract class Personaje{
     String nombre;
