@@ -17,47 +17,6 @@ public class Partido {
 		this.goles=new TreeSet <> ();
 		
 	}
-
-	public Set<Jugador> getLocal() {
-		return local;
-	}
-
-	public void setLocal(Set<Jugador> local) {
-		this.local = local;
-	}
-
-	public Set<Jugador> getVisitante() {
-		return visitante;
-	}
-
-	public void setVisitante(Set<Jugador> visitante) {
-		this.visitante = visitante;
-	}
-
-	public Integer getNumeroPartido() {
-		return numeroPartido;
-	}
-
-	public void setNumeroPartido(Integer numeroPartido) {
-		this.numeroPartido = numeroPartido;
-	}
-
-	public void registrarGol(Jugador jugador, Integer minuto) {
-
-		Gol gol = new Gol(jugador, minuto);
-		this.goles.add(gol);
-		
-	}
-
-	public Set<Gol> getGoles() {
-		return goles;
-	}
-
-	public void setGoles(Set<Gol> goles) {
-		this.goles = goles;
-	}
-	
-	
 	
 	public String obtenerEquipoGanador() {
 		Integer golesEquipoLocal=0;
@@ -98,8 +57,46 @@ public class Partido {
 		return equipo;
 	}
 	
+	public void registrarGol(Jugador jugador, Integer minuto) {
+
+		Gol gol = new Gol(jugador, minuto);
+		this.goles.add(gol);
+		
+	}
+	 	
+	public Set<Gol> getGoles() {
+		return goles;
+	}
+
+	public void setGoles(Set<Gol> goles) {
+		this.goles = goles;
+	}
 	
-	
+	public Set<Jugador> getLocal() {
+		return local;
+	}
+
+	public void setLocal(Set<Jugador> local) {
+		this.local = local;
+	}
+
+	public Set<Jugador> getVisitante() {
+		return visitante;
+	}
+
+	public void setVisitante(Set<Jugador> visitante) {
+		this.visitante = visitante;
+	}
+
+	public Integer getNumeroPartido() {
+		return numeroPartido;
+	}
+
+	public void setNumeroPartido(Integer numeroPartido) {
+		this.numeroPartido = numeroPartido;
+	}
+
+
 	
 	
 	
