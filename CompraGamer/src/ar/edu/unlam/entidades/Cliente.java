@@ -1,16 +1,37 @@
 package ar.edu.unlam.entidades;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cliente {
 
 	private String nombre;
 	private Integer dni;
 	private Double dinero;
-	
+	private List<Componente> componentes = new ArrayList<>();
+
 	public Cliente(String nombre, Integer dni, Double dinero) {
 		this.nombre = nombre;
 		this.dni = dni;
 		this.dinero = dinero;
 	}
+
+	public void comprar(Componente componente) {
+		if (componente.getPrecio() <= this.dinero) {
+			this.componentes.add(componente);
+		}
+	}
+
+	public void mostrarCompra() {
+		for (int i = 0; i < this.componentes.size(); i++) {
+			if (this.componentes.get(i) != null) {
+				System.out.println("Componentes: " + this.componentes.get(i));
+			}
+
+		}
+	}
+
+	// Getter & Setters
 
 	public String getNombre() {
 		return nombre;
@@ -36,6 +57,16 @@ public class Cliente {
 		this.dinero = dinero;
 	}
 
+	public List<Componente> getComponentes() {
+		return componentes;
+	}
+
+	public void setComponentes(List<Componente> componentes) {
+		this.componentes = componentes;
+	}
+
+	// @Override
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -60,12 +91,11 @@ public class Cliente {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Cliente [nombre=" + nombre + ", dni=" + dni + ", dinero=" + dinero + ", componentes=" + componentes
+				+ "]";
+	}
+
 }

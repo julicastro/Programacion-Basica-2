@@ -1,92 +1,81 @@
 package NoHomeros;
 
-import java.util.*;
+import static java.util.Comparator.comparing;
 
-import Excepciones.ClienteNoEncontradoException;
+import java.util.TreeSet;
 
 public class Bar {
 
 	private String nombre;
-	private LinkedList <Cliente> clientes = new LinkedList<>(); 
-	private Boolean estaAbierto = false;
+	private TreeSet<Persona> clientes = new TreeSet<>(comparing(Persona::getNombre));
+	private Boolean abierto = false;
 
-	
 	public Bar(String nombre) {
-		this.nombre = nombre;
+		this.setNombre(nombre);
+		this.clientes = new TreeSet<Persona>();
 	}
 
-	public void abrir() {
-		if(this.estaAbierto==false) {
-			this.estaAbierto = true;
-		}
+	public void abrirBar() {
+		this.setAbierto(true);
 	}
 
-	public void cerrar() {
-		if(this.clientes.size()==0 && this.estaAbierto == true) {
-			this.estaAbierto = false;
-		}	
+	public void cerrarBar() {
+		if (this.clientes.isEmpty())
+			this.setAbierto(false);
 	}
-	
-	public Boolean agregarClienteAlBar(Cliente cliente) throws ClienteNoEncontradoException {
-		Boolean seAgrego = false;
-		Boolean encontro = buscarCliente(cliente.getNombre());
-		if(this.estaAbierto==true && encontro == false) {
+
+	public Integer getCantidadDePersonasPresentes() {
+		return this.clientes.size();
+	}
+
+	public Boolean agregarCliente(Persona cliente) {
+		Boolean agrego = false;
+		if (this.abierto == true && !this.clientes.contains(cliente)) {
 			this.clientes.add(cliente);
-			seAgrego = true;
-		}else {
-			seAgrego = false;
+			agrego = true;
+		} else {
+			agrego = false;
 		}
-		return seAgrego;
+		return agrego;
 	}
-	
-	public Boolean buscarCliente(String nombreABuscar) throws ClienteNoEncontradoException {
-		Boolean encontro = false;
-		for (int i = 0; i < this.clientes.size(); i++) {
-			if(this.clientes.get(i).getNombre().equals(nombreABuscar)) {
-				encontro = true;
-			}else {
-				throw new ClienteNoEncontradoException();
-			}
-		}
-		return encontro;
-	}
-	
-	public Boolean quitarCliente(Cliente cliente) throws ClienteNoEncontradoException {
-		Boolean seElimino = false;
-		Boolean encontro = buscarCliente(cliente.getNombre());
-		if(this.estaAbierto==true && encontro == true) {
-			for (int i = 0; i < this.clientes.size(); i++) {
-				if(this.clientes.get(i).equals(cliente)) {
-					this.clientes.remove(i);
-					seElimino = true;
-					break;
-				}
-			}
-		}
-		return seElimino;
-	}
-	
-	public void ordenarClientesAlfabeticamente() {
-		for (Cliente c : clientes) {
-			System.out.println("Nombre = " + c.getNombre() + ", Edad = " + c.getEdad());
-		}
-	}
-	
-	public void ordenarAlfabeticamente() {
-		for (Cliente c : clientes) {
-			System.out.println(c.getNombre());
-		}
-	}
-	
-	/*
-	public LinkedList <Cliente> ordenarClientesPorEdad() {
-		return Collections.sort((List<T>) this.clientes); 
 
+	public Boolean quitarCliente(Persona cliente) {
+		Boolean quito = false;
+		if (this.abierto == true) {
+			this.clientes.remove(cliente);
+			quito = true;
+		} else {
+			quito = false;
+		}
+		return quito;
 	}
-	*/	
-	
-	// Getters y Setters
-	
+
+	public Persona buscarCliente(String nombre) {
+		Persona clienteABuscar = new Persona(nombre, null);
+		for (Persona p : clientes) {
+			if (p.equals(clienteABuscar)) {
+				return p;
+			}
+		}
+		return null;
+	}
+
+	public void ordenarClientesAlfabeticamente() {
+		for (Persona p : this.clientes) {
+			System.out.println("Paciente -> " + p.getNombre() + ", dni -> " + p.getEdad());
+		}
+	}
+
+	public TreeSet<Persona> presentarClientesPorEdad() {
+		OrdenPorEdad orden = new OrdenPorEdad();
+		TreeSet<Persona> ordenados = new TreeSet<Persona>(orden);
+		ordenados.addAll(clientes);
+		if (this.abierto)
+			return ordenados;
+		else
+			return null;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -95,22 +84,22 @@ public class Bar {
 		this.nombre = nombre;
 	}
 
-	public Boolean getEstaAbierto() {
-		return estaAbierto;
-	}
-
-	public void setEstaAbierto(Boolean estaAbierto) {
-		this.estaAbierto = estaAbierto;
-	}
-
-	public void setClientes(LinkedList<Cliente> clientes) {
-		this.clientes = clientes;
-	}
-
-	public LinkedList<Cliente> getClientes() {
+	public TreeSet<Persona> getClientes() {
 		return clientes;
 	}
 
-	
+	public void setClientes(TreeSet<Persona> clientes) {
+		this.clientes = clientes;
+	}
+
+	public Boolean getAbierto() {
+		return abierto;
+	}
+
+	public void setAbierto(Boolean abierto) {
+		this.abierto = abierto;
+	}
+
+	/*--------------------------------------------------------------*/
 
 }

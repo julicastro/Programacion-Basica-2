@@ -1,4 +1,4 @@
-package Excepciones;
+package NoHomeros;
 
 public class ClienteNoEncontradoException extends Exception{
 
